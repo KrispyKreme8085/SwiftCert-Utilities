@@ -9,22 +9,34 @@ import SwiftUI
 
 struct SplitBill: View {
     @State var bill: String = ""
-    @State var tip: String = ""
-    @State var people: String = ""
+    @State var tip: Double = 0.5
+    @State var people: Int = 1
+    @State var split: String = ""
+    
     var body: some View {
         VStack{
             Text("Bill")
             TextField("Total", text: $bill)
+                .frame(width: 100)
             
             Text("Tip")
-            TextField("Tip", text: $tip)
+            Slider(value: $tip, in: 0.0...1.0)
+                .frame(width: 200)
+            Text("\(tip.formatted(.percent.precision(.fractionLength(0))))")
             
-            Text("Number of People")
-            TextField("No. of People", text: $people)
             
-            Text("Total with Tip")
+            Stepper("Number of People:", value: $people, in: 1...20)
+            Text("\(people)")
+                .frame(width: 100)
             
-            Text("Total per person")
+            Button("Calculate") {
+                split = Calculator(billAmount: Double(bill) ?? 0, tipPercentage: tip, people: people)
+            }
+            
+            .padding()
+            
+            
+            Text("Total per person: \(split)")
             
         }
     }

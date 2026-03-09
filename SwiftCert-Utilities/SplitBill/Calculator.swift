@@ -8,7 +8,7 @@
 import Foundation
 
 func Calculator(billAmount: Double, tipPercentage: Double, people: Int) -> String {
-    let tip = billAmount * (tipPercentage / 100)
+    let tip = billAmount * (tipPercentage)
     
     let total = billAmount + tip
     
