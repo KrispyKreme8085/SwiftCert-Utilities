@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct SplitBill: View {
+    @State var bill: String = ""
+    @State var tip: String = ""
+    @State var people: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Text("Bill")
+            TextField("Total", text: $bill)
+            
+            Text("Tip")
+            TextField("Tip", text: $tip)
+            
+            Text("Number of People")
+            TextField("No. of People", text: $people)
+            
+            Text("Total with Tip")
+            
+            Text("Total per person")
+            
+        }
     }
 }
 
